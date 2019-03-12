@@ -1,0 +1,84 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<style type="text/css">
+    .nav-tabs>li>a:hover{
+        color: #333;
+        border-color: #31C2A5;
+        background-color: white;
+    }
+    .nav-tabs > li.active > a,.nav-tabs > li.active > a:hover{
+        background-color: #31C2A5;
+        color: white;
+        border-color: #31C2A5;
+    }
+    .nav.nav-tabs{border-color: #31C2A5;margin-top: 30px;}
+</style>
+<ul class="nav nav-tabs">    
+    <li class="active"><a href="javascript:void(0);">设置信息</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <!--<input type="hidden" name="parentid" value="{$parent['id']}" />-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                UU跑腿&nbsp;&nbsp;>&nbsp;&nbsp;设置信息
+            </div>
+            <div class="panel-body">
+                 <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启UU跑腿</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_open" value="1" {if $info['is_open']==1 || empty($info['is_open'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_open" value="2" {if $info['is_open']==2}checked{/if} />关闭
+                        </label>
+                    </div>
+                </div>
+                   <!--   <div class="form-group">
+                                       <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单价格确认方式</label>
+                                       <div class="col-sm-9">
+                      <label class="radio-inline">
+                          <input type="radio" name="is_check" value="2" {if $info['is_check']==2 || empty($info['is_check'])}checked{/if} />手动
+                      </label>
+                      <label class="radio-inline">
+                          <input type="radio" name="is_check" value="1" {if $info['is_check']==1}checked{/if} />自动
+                      </label>
+                                       </div>
+                                   </div> -->
+                
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">appid</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="appid" class="form-control" value="{$info['appid']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">appkey</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="appkey" class="form-control" value="{$info['appkey']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">绑定账号</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="account" class="form-control" value="{$info['account']}" />
+                    </div>
+                </div>
+             
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">OpenId</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="OpenId" class="form-control" value="{$info['OpenId']}" />
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="提交" class="btn col-lg-3" style="color: white;background-color: #31C2A5;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+             <input type="hidden" name="id" value="{$info['id']}" />
+        </div>
+    </form>
+</div>

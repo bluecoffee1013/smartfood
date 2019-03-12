@@ -1,0 +1,322 @@
+{template 'public/header-base'}
+<style>
+	.nav.nav-tabs{border-color:#20a0ff;}
+	.nav-tabs>li>a:hover{border-color:#eee #eee #20a0ff #eee;}
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{background-color:#20a0ff; border-color:#20a0ff;}
+	.nav-tabs>li>a {border-radius: 0 0 0 0;}
+	.nav{background-color: white;}
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+		color: #FFF;
+		background-color: #20a0ff;
+		border-color: #20a0ff;
+	}
+	.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus{
+		color: #31C2A5;
+		background-color: orange;
+	}
+	.list-group-item.active{
+		background-color: orange;
+		border-color: #20a0ff;
+		color: #31C2A5;		
+	}
+	.navbar-inverse {
+		background-color: #fff;
+		border-color: #20a0ff
+	}
+	.block {
+		display: block;
+	}
+	.clear {
+		display: block;
+		overflow: hidden;
+	}
+	.navbar-nav > li > a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		line-height: 40px
+	}
+	.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus{
+		color: #777;
+		background-color: #eee;
+	}
+	.big-menu{
+		background-color: #2A3542;
+		padding-top: 30px;
+	}
+	
+	@media all and (min-width: 900px) and (max-width: 1003px) {
+		.big-menu{width: 14.666667%;}
+	}
+	@media all and (max-width: 1450px) {
+		.big-menu{width: 16.666667%;}
+	}
+	@media all and (min-width: 1451px) {
+		.big-menu{width: 12.666667%;}
+	}
+	.big-menu .panel .list-group-item{
+		border:none;overflow:hidden; white-space:normal; text-overflow:clip;background-color: #35404D;
+	}
+	.panel>.list-group .list-group-item{padding-left: 44px;}
+	.big-menu .panel .list-group-item:hover{
+		background-color: #505D6C;
+		color:white;
+	}
+	.btn-primary {
+		color: #fff;
+		background-color: #0066cd;
+		border-color: #0066cd;
+	}
+	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active,
+	.open > .dropdown-toggle.btn-primary {
+		color: #fff;
+		background-color: #0066cd;
+		border-color: #0066cd;
+	}
+	.big-menu .panel .panel-heading .panel-title{
+		width: 100px;
+		float: left;
+		font-size: 14px;
+	}
+
+	.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse
+	.navbar-nav>.active>a:focus{
+		color: #f60;
+		background-color: #e7e7e7;
+		border-bottom: 2px solid transparent;
+		border-color: #f60;
+	}
+	button{outline: none;}
+	.left{float: left;}
+	.right{float: right;}
+	a{text-decoration: none;}
+	a:hover{text-decoration: none;}
+	ul,li{list-style: none;}
+	ul{margin-bottom: 0px;}
+	body{font-size: 14px;font-family: "微软雅黑";}
+	.clearfix{clear:both;}
+	.header{
+	    background-color: #31C2A5;;
+	    color: white;
+	    height: 100%;
+	}
+
+	.header_left{
+	    height: 50px;
+	    padding-top: 10px;
+	}
+	.header_logo{
+	    width: 34px;
+	    height: 30px;
+	    float: left;
+	   border-radius: 50%;
+	}
+	.header_logo>img{border-radius: 50%;}
+	.header_title{
+	    float: left;
+	    font-size: 20px;
+	    font-weight: bold;
+	    margin-left: 10px;
+	}
+	
+	@media all and (max-width: 1270px) {
+		.header_right{
+			width: 30%;
+			left: 36%;
+		}
+	}
+	@media all and (max-width: 1250px) {
+		.header_right{
+			width: 34%;
+			left: 32%;
+		}
+	}
+	@media all and (max-width: 1200px) {
+		
+	}
+	@media all and (min-width: 1270px){
+		.header_right{
+			width: 27%;
+		}
+	}
+	.header_right{
+	    height: 50px;
+	    padding: 8px 0px 8px 0px;
+	}
+	.header_right>li>a:hover{color: white;}
+	.header_right>li{
+	    float: left;
+	    padding: 0px 20px;
+	    border-right: 1px solid #049473;
+	    line-height: 33px;
+	}
+	.ymargin{
+		float: right;
+		margin-top: 5px;
+	}
+	.header_btn{text-align: center;float: left;margin-left: 20px;width: 100px;border-right: 1px solid #049473;border-left: 1px solid #049473;height: 30px;line-height: 30px;}
+	.header_left>a:hover{color: white;}
+	.fa-map-marker,.fa-life-ring,.fa-bars,.fa-recycle,.fa-cog,.fa-book,.fa-gift,.fa-user,.fa-binoculars,.fa-trophy,.fa-key{margin-right: 15px;}
+	.fa-cubes{margin-right: 8px;}
+	.fa-university{margin-right: 12px;}
+	.yg_login{height: 100px;text-align: center;color: white;font-size: 14px;margin-bottom: 20px;}
+	.yg_login>img{margin: 0px auto;width: 60px;height: 60px;background-color: #5CB85C;border-radius: 50%;border: none;margin-bottom: 15px;}
+	.panel-heading:hover{background-color: #F5F5F5;}
+	.yg_back{background-color: #F2F2F2;}
+</style>
+
+{php $res=pdo_get('wpdc_system',array('uniacid'=>$_W['uniacid']))}
+<div class="col-md-12 col-xs-12 col-sm-12 header">
+    <div class="col-md-4 header_left">
+        <div class="header_logo">
+            <img width="100%" height="100%;" src="{if $res['link_logo']}{php echo tomedia($res['link_logo'])}{else}../addons/zh_dianc/template/images/bac.png{/if}" alt=""/>
+        </div>
+        <div class="header_title">{if $res['link_name']}{$res['link_name']}{else}智慧餐饮管理系统{/if}</div>
+        <a href="{php echo $this->createWebUrl('store')}"><div class="header_btn">返回首页</div></a>
+    </div>
+    <ul class="col-md-3 col-xs-5 col-md-push-5 col-xs-push-3 header_right">
+       <!--  <li>
+            <img width="31px" height="32px" src="../addons/zh_dianc/template/images/man.png" alt=""/>
+            <span>admin</span>
+        </li> -->
+        <li>
+			<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style="display:block; max-width:185px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; "><i class="fa fa-user"></i>{$_W['user']['username']} ({if $_W['role'] == 'founder'}系统管理员{elseif $_W['role'] == 'manager'}公众号管理员{else}公众号操作员{/if}) <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				{if $_W['role'] != 'operator'}
+				<li><a href="{url 'user/profile/profile'}" target="_blank"><i class="fa fa-weixin fa-fw"></i> 我的账号</a></li>
+				<li class="divider"></li>
+				<li><a href="{url 'home/welcome/system'}" target="_blank"><i class="fa fa-sitemap fa-fw"></i> 系统选项</a></li>
+				<li><a href="{url 'cloud/upgrade'}" target="_blank"><i class="fa fa-cloud-download fa-fw"></i> 自动更新</a></li>
+				<li><a href="{url 'system/updatecache'}" target="_blank"><i class="fa fa-refresh fa-fw"></i> 更新缓存</a></li>
+				<li class="divider"></li>
+				{/if}
+			</ul>
+        <li>
+            <a href="index.php?c=home&a=welcome&do=platform&"> <img width="21px" height="20px" src="../addons/zh_dianc/template/images/home.png" title="返回系统"/></a>
+        </li>        
+        <!-- <li>
+            <img src="../addons/zh_dianc/template/images/tongzhi.png" width="15px" height="18px" alt=""/>
+        </li> -->
+        <li>
+            <a href="{url 'user/logout'}"><img src="../addons/zh_dianc/template/images/kaiguan.png" width="20px" height="20px" title="退出系统"/></a>
+        </li>
+    </ul>
+</div>
+<div class="container-fluid col-md-12 col-xs-12 col-sm-12">
+	{if defined('IN_MESSAGE')}
+	<div class="jumbotron clearfix alert alert-{$label}">
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 col-lg-2">
+				<i class="fa fa-5x fa-{if $label=='success'}check-circle{/if}{if $label=='danger'}times-circle{/if}{if $label=='info'}info-circle{/if}{if $label=='warning'}exclamation-triangle{/if}"></i>
+			</div>
+			<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+				{if is_array($msg)}
+				<h2>MYSQL 错误：</h2>
+				<p>{php echo cutstr($msg['sql'], 300, 1);}</p>
+				<p><b>{$msg['error'][0]} {$msg['error'][1]}：</b>{$msg['error'][2]}</p>
+				{else}
+				<h2>{$caption}</h2>
+				<p>{$msg}</p>
+				{/if}
+				{if $redirect}
+				<p><a href="{$redirect}">如果你的浏览器没有自动跳转，请点击此链接</a></p>
+				<script type="text/javascript">
+					setTimeout(function () {
+						location.href = "{$redirect}";
+					}, 3000);
+				</script>
+				{else}
+				<p>[<a href="javascript:history.go(-1);">点击这里返回上一页</a>] &nbsp; [<a href="./?refresh">首页</a>]</p>
+				{/if}
+			</div>
+			{else}
+			<div class="row yg_top">
+				{php $frames = empty($frames) ? $GLOBALS['frames'] : $frames; _calc_current_frames($frames);}
+				{if !empty($frames)}
+				<div class="col-lg-2 big-menu col-md-2 col-xs-2 col-sm-2">
+					<!-- <div class="yg_login">
+						<img src="../addons/zh_dianc/template/images/bac.png">
+						<div>名字是志汇餐饮</div>
+					</div> -->
+					{if $cur_store}
+					<div class="yg_login">
+						<img src="{php echo tomedia($cur_store['md_logo'])}">
+						<div>{$cur_store['md_name']}</div>
+					</div>
+					<!-- <div class="panel panel-default" style="padding-bottom: 10px;padding-top: 5px;">
+						<span style="width:13.3333337%; height:160px;display: table-cell; line-height:160px; vertical-align:middle;text-align: center;padding-top: 5px;">
+							<img style="display: inline-block;width: 160px;height: 160px;
+box-sizing: border-box;margin-top:10px;padding: 10px;border: 1px solid #f2f2f2;box-sizing: border-box;max-width: 100%;" alt="image" src="{php echo tomedia($cur_store['md_logo'])}" onerror="this.src='../addons/zh_dianc/template/images/logo.png';"/>
+						</span>
+						<a href="#" >
+							<span style="text-align:center;margin-top: 8px;" class="block m-t-xs"><strong class="font-bold">{$cur_store['md_name']}</strong></span>
+							<span style="text-align:center;" class="text-muted text-xs block"><strong class="font-bold">{$_W['user']['username']}</strong>({if $_W['role'] == 'founder'}系统管理员{elseif $_W['role'] == 'manager'}公众号管理员{else}门店管理员{/if})</span>
+						</a>
+					</div> -->
+					{/if}
+					{loop $frames $k $frame}
+					<div class="panel panel-default" style="border-color: #35404d;color: #E5E8ED;">
+						<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#frame-{$k}" style="background-color: #35404d;cursor: pointer;color: #E5E8ED;border:none;height: 50px;">
+							<div class="panel-title">{$frame['title']}</div>
+							<div class="ymargin fa fa-chevron-circle-down"></div>
+						</div>
+						<ul class="list-group collapse" id="frame-{$k}">
+							{loop $frame['items'] $link}
+							{if !empty($link['append'])}
+							<li class="list-group-item{$link['active']}" onclick="window.location.href = '{$link['url']}';" style="cursor:pointer;" kw="{$link['title']}">
+								{$link['title']}
+								<a class="pull-right" href="{$link['append']['url']}">{$link['append']['title']}</a>
+							</li>
+							{else}
+							<a class="list-group-item{$link['active']}" href="{$link['url']}" kw="{$link['title']}" style="padding-left: 40px;">{$link['title']}</a>
+							{/if}
+							{/loop}
+						</ul>
+					</div>
+					{/loop}
+					<script type="text/javascript">						
+						require(['bootstrap'], function(){
+							$('#search-menu input').keyup(function() {
+								var a = $(this).val();
+								$('.big-menu .list-group-item, .big-menu .panel-heading').hide();
+								$('.big-menu .list-group-item').each(function() {
+									$(this).css('border-left', '0');
+									if(a.length > 0 && $(this).attr('kw').indexOf(a) >= 0) {
+										$(this).parents(".panel").find('.panel-heading').show();
+										$(this).show().css('border-left', '3px #428bca double');
+									}
+								});
+								if(a.length == 0) {
+									$('.big-menu .list-group-item, .big-menu .panel-heading').show();
+								}
+							});
+						});
+					</script>
+				</div>
+
+				<div class="col-lg-10 col-md-10 col-xs-10 col-sm-10 yg_back">
+					<style>.topNav{border-bottom-color: rgb(0, 0, 0);border-bottom-width: 0.1em;border-bottom-style: inset;}</style>
+					{if CRUMBS_NAV == 1}
+					{php global $module_types;global $module;global $ptr_title;}
+					{php $frames = empty($frames) ? $GLOBALS['frames'] : $frames; _calc_current_frames($frames);}
+					<script language='javascript'>
+						$(function(){
+							$(".breadcrumb").remove();
+						})
+					</script>
+					{elseif CRUMBS_NAV == 2}
+					{php global $module_types;global $module;global $ptr_title; global $site_urls; $m = $_GPC['m'];}
+					<ul class="nav nav-tabs">
+						<li><a href="{url 'platform/reply' array('m' => $m)}">管理{$module['title']}</a></li>
+						<li><a href="{url 'platform/reply/post' array('m' => $m)}"><i class="fa fa-plus"></i> 添加{$module['title']}</a></li>
+						{if !empty($site_urls)}
+						{loop $site_urls $site_url}
+						<li {if $_GPC['do'] == $site_url['do']} class="active"{/if}><a href="{$site_url['url']}"> {$site_url['title']}</a></li>
+						{/loop}
+						{/if}
+					</ul>
+					{/if}
+					{else}
+					<div>
+					{/if}
+					{/if}
+

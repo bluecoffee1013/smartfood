@@ -1,0 +1,54 @@
+﻿{template 'public/header'}
+{template 'public/comhead'}
+<style type="text/css">
+    /*#frame-14{display: block;visibility: visible;}*/
+</style>
+  <div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="invitative">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                系统设置&nbsp;>&nbsp;模板消息
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">外卖订单通知：</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">
+                             <input type="text" name="tid" value="{$item['tid']}" id="points" class="form-control" />
+                        </p>
+                        <div style="color: #999;">*模板编号AT0009,关键词(订单编号,联系人姓名,联系人手机号,金额,时间)</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">客户预约点餐通知：</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">
+                             <input type="text" name="yy_tid" value="{$item['yy_tid']}" id="points" class="form-control" />
+                        </p>
+                        <div style="color: #999;">*模板编号AT0104,关键词(门店,时间,姓名,电话,就餐人数,备注)</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">客户当面付点餐通知：</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">
+                             <input type="text" name="dm_tid" value="{$item['dm_tid']}" id="points" class="form-control" />
+                        </p>
+                        <div style="color: #999;">*模板编号AT0005,关键词(商家名称,付款金额,付款时间)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #31C2A5;" />
+            <input type="hidden" name="token" value="{$_W['token']}" />
+            <input type="hidden" name="id" value="{$item['id']}"/>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#frame-14").addClass("in");
+    })
+</script>

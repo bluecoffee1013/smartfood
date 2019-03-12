@@ -1,0 +1,376 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<style type="text/css">
+    /*#frame-0{display: block;visibility: visible;}*/
+    .panel-default>.panel-heading{font-weight: bold;}
+    .yg9_content{height: 120px;}
+    .yg9_thing{padding: 0px 30px 10px;}    
+    @media all and (max-width: 1400px) {
+      .content_img{
+        width: 36px;
+        height: 36px;
+        float: left;
+      }
+      .content_img>img{
+        width: 36px;
+        height: 36px;
+      }
+      .yg9_li{height: 100px;border: 1px solid #E5E5E5;padding: 20px;}
+    }
+    @media all and (max-width: 1270px) {
+      .content_img{
+        width: 30px;
+        height: 30px;
+        float: left;
+      }
+      .content_img>img{
+        width: 30px;
+        height: 30px;
+      }
+      .yg9_li{height: 100px;border: 1px solid #E5E5E5;padding: 10px;}
+    }
+    @media all and (min-width: 1401px) {
+      .content_img{
+        width: 46px;
+        height: 46px;
+        float: left;
+      }
+      .content_img>img{
+        width: 46px;
+        height: 46px;
+      }
+      .yg9_li{height: 120px;border: 1px solid #E5E5E5;padding: 30px;}
+    }
+    .yg9_content>li{
+        float: left;
+        height: 120px;
+    }
+    
+    .content_text{float: left;margin-left: 20px;}
+    .content_text div:nth-child(1){color: #999999;font-size: 16px;}
+    .content_text div:nth-child(2){color: #333;font-size: 22px;}
+    .list_one{padding-right: 30px;}
+    .list_one>li{
+      width: 100%;
+      height: 54px;
+      border-bottom: 1px solid #E5E5E5;
+      color: #666666;
+      padding-top: 25px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .list_one>li>div:nth-child(1){float: left;}
+    .list_one>li>div:nth-child(2){float: right;}
+    .list_one_num{color: #ff6161;}
+    .yg9_quie{
+      padding: 0px 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      -webkit-align-items: center;
+      -webkit-justify-content: space-between;
+    }
+    .yg9_quie>li{
+      font-size: 14px;
+      color: #666666;
+      font-weight: bold;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      -webkit-flex-direction: column;
+      -webkit-align-items: center;
+      -webkit-align-items: center;
+    }
+    .yg9_quie>a>li>p{margin-top: 9px;text-align: center;}
+    .yg9_quie>a>li>img{height: 72px;width: 72px;}
+    .content_seller{
+          margin-top: 20px;
+          height: 200px;
+        }
+      .content_seller_left{
+          height: 200px;          
+      }
+      .seller_red{color: #ff6161;font-size: 20px;}
+      .seller_text{margin-top: 15px;}
+      .content_seller_ul{
+          padding: 40px 30px 0px;
+      }
+      .content_seller_ul>li{
+          float: left;
+          text-align: center;
+      }
+      .content_thing_title{
+          height: 45px;
+          background-color: #F3F3F3;
+          font-weight: bold;
+          color: #333;
+          line-height: 45px;
+          text-indent: 2em;
+          border-bottom: 1px solid #E5E5E5;
+      }
+      .yg9_left{
+        height: 200px;
+        border: 1px solid #E5E5E5;
+        background-color: white;
+      }
+</style>
+<div class="main">
+    <div class="panel panel-default">
+        <div class="panel-heading">销售盘点</div>
+            <div class="panel-body">        
+        <ul class="col-lg-12 yg9_content" style="margin-bottom: 10px;">
+            <li class="col-lg-3" >
+              <div class="col-md-12 yg9_li">
+                  <div class="content_img">
+                      <img class="img-responsive" src="../addons/zh_dianc/template/images/dsfddf.png" alt=""/>
+                  </div>
+                  <div class="content_text">
+                      <div>今日订单统计</div>
+                      <div>{$ordernum}</div>
+                  </div>
+              </div>
+            </li>
+            <li class="col-lg-3">
+              <div class="col-md-12 yg9_li">
+                  <div class="content_img">
+                      <img src="../addons/zh_dianc/template/images/money.png" alt=""/>
+                  </div>
+                  <div class="content_text">
+                      <div>今日销售总额</div>
+                      <div>¥{if $total}{$total}{else}0.00{/if}</div>
+                  </div>
+                </div>
+            </li>
+            <li class="col-lg-3">
+                <div class="col-md-12 yg9_li">
+                    <div class="content_img">
+                        <img src="../addons/zh_dianc/template/images/money2.png" alt=""/>
+                    </div>
+                    <div class="content_text">
+                        <div>昨日销售总额</div>
+                        <div>¥{if $total2}{$total2}{else}0.00{/if}</div>
+                    </div>
+                </div>
+            </li>
+            <li class="col-lg-3">
+                <div class="col-md-12 yg9_li">
+                    <div class="content_img">
+                        <img src="../addons/zh_dianc/template/images/dfsd.png" alt=""/>
+                    </div>
+                    <div class="content_text">
+                        <div>近7天销售总额</div>
+                        <div>¥{if $total3}{$total3}{else}0.00{/if}</div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+         <ul class="col-lg-12 yg9_content">
+            <li class="col-lg-3">
+              <div class="col-md-12 yg9_li">
+                  <div class="content_img">
+                      <img class="img-responsive" src="../addons/zh_dianc/template/images/dsfddf.png" alt=""/>
+                  </div>
+                  <div class="content_text">
+                      <div>今日外卖销售总额</div>
+                      <div>¥{if $wm['total']}{$wm['total']}{else}0.00{/if}</div>
+                  </div>
+              </div>
+            </li>
+            <li class="col-lg-3">
+              <div class="col-md-12 yg9_li">
+                  <div class="content_img">
+                      <img src="../addons/zh_dianc/template/images/money.png" alt=""/>
+                  </div>
+                  <div class="content_text">
+                      <div>今日店内销售总额</div>
+                      <div>¥{if $dn['total']}{$dn['total']}{else}0.00{/if}</div>
+                  </div>
+                </div>
+            </li>
+            <li class="col-lg-3">
+                <div class="col-md-12 yg9_li">
+                    <div class="content_img">
+                        <img src="../addons/zh_dianc/template/images/money2.png" alt=""/>
+                    </div>
+                    <div class="content_text">
+                        <div>今日预约销售总额</div>
+                        <div>¥{if $yd['total']}{$yd['total']}{else}0.00{/if}</div>
+                    </div>
+                </div>
+            </li>
+            <li class="col-lg-3">
+                <div class="col-md-12 yg9_li">
+                    <div class="content_img">
+                        <img src="../addons/zh_dianc/template/images/dfsd.png" alt=""/>
+                    </div>
+                    <div class="content_text">
+                        <div>今日当面付销售总额</div>
+                        <div>¥{if $dmf['total']}{$dmf['total']}{else}0.00{/if}</div>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+        </div>        
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">待处理的事物</div>
+            <div class="panel-body">  
+                <div class="col-md-12 yg9_thing">
+                    <ul class="col-md-4 list_one">
+                        <li>
+                            <div>待接单的外卖订单</div>
+                            <div>(<a href="{php echo $this->createWebUrl('inorder',array('type'=>now));}"><span class="list_one_num">{$sql6}</span></a>)</div>
+                        </li>
+                        <li>
+                            <div>待付款的店内订单</div>
+                            <div>(<a href="{php echo $this->createWebUrl('indnorder',array('type'=>wait));}"><span class="list_one_num">{$sql8}<span class="list_one_num"></a>)</div>
+                        </li>
+                        <li>
+                            <div>待审核的预定订单</div>
+                            <div>(<a href="{php echo $this->createWebUrl('inydorder',array('type'=>wait));}"><span class="list_one_num">{$sql9}</span></a>)</div>
+                        </li>
+                    </ul>
+                    <ul class="col-md-4 list_one">
+                        <li>
+                            <div>待送达的外卖订单</div>
+                            <div>(<a href="{php echo $this->createWebUrl('inorder',array('type'=>delivery));}"><span class="list_one_num">{$sql7}</span></a>)</div>
+                        </li>
+                        <li>
+                            <div>已开台的桌子</div>
+                            <div>(<a href="{php echo $this->createWebUrl('table');}"><span class="list_one_num">{$sql11}</span></a>)</div>
+                        </li>
+                       <!--  <li>
+                            <div>待付款的订单</div>
+                            <div>(<span class="list_one_num">10</span>)</div>
+                        </li> -->
+                    </ul>
+                    <ul class="col-md-4 list_one">
+                        <li>
+                            <div>完成的外卖订单</div>
+                            <div>(<a href="{php echo $this->createWebUrl('inorder',array('type'=>complete));}"><span class="list_one_num">{$sql10}</span></a>)</div>
+                        </li>
+                        <li>
+                            <div>未开台的桌子</div>
+                            <div>(<a href="{php echo $this->createWebUrl('table');}"><span class="list_one_num">{$sql12}</span></a>)</div>
+                        </li>
+                        <!-- <li>
+                            <div>待付款的订单</div>
+                            <div>(<span class="list_one_num">10</span>)</div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 待处理的事物 -->
+    <div class="panel panel-default">
+        <div class="panel-heading">运营快捷入口</div>
+        <div class="panel-body">
+          <ul class="col-md-12 yg9_quie">
+          <a href="{php echo $this->createWebUrl('adddishes');}">
+            <li class="">
+              <img src="../addons/zh_dianc/template/images/zu.png">
+              <p>添加商品</p>
+            </li>
+            </a>
+<!--             <li class="col-md-1">
+              <img src="../addons/zh_dianc/template/images/xiaoshou.png">
+              <div>菜品管理</div>
+            </li> -->
+             <a href="{php echo $this->createWebUrl('inorder');}">
+            <li class="">
+              <img src="../addons/zh_dianc/template/images/dingdan.png">
+              <p>订单列表</p>
+            </li>
+             </a>
+              <a href="{php echo $this->createWebUrl('table2');}">
+            <li class="">
+              <img src="../addons/zh_dianc/template/images/duanxin.png">
+              <p>餐桌管理</p>
+            </li>
+            </a>
+            <a href="{php echo $this->createWebUrl('ygquan');}">
+            <li class="">
+              <img src="../addons/zh_dianc/template/images/yuanxing.png">
+              <p>营销管理</p>
+            </li>
+            </a>
+             <a href="{php echo $this->createWebUrl('print');}">
+            <li class="">
+              <img src="../addons/zh_dianc/template/images/miaosha.png">
+              <p>打印管理</p>
+            </li>
+            </a>
+             <a href="{php echo $this->createWebUrl('storeinfo');}">
+            <li class="">
+              <img src="../addons/zh_dianc/template/images/tuijian.png">
+              <p>门店信息</p>
+            </li>
+            </a>
+          </ul>
+        </div>
+    </div>
+    <!-- 运营快捷入口结束 -->
+    <!-- 商品总览 -->
+    <!-- 待处理的事物 -->
+    <div class="content_seller col-md-12" style="padding: 0px;">
+            <div class="content_seller_left col-md-6" style="padding-right: 20px;padding-left: 0px;">
+                <div class="yg9_left">
+                    <div class="content_thing_title">外卖菜品总览</div>
+                    <ul class="content_seller_ul">
+                        <li class="col-md-3">
+                            <div class="seller_red">{$sql13}</div>
+                            <div class="seller_text">已上架</div>
+                        </li>
+                        <li class="col-md-3">
+                            <div class="seller_red">{$sql14}</div>
+                            <div class="seller_text">已下架</div>
+                        </li>
+                       <!--  <li class="col-md-3">
+                            <div class="seller_red">100</div>
+                            <div class="seller_text">已下架</div>
+                        </li>
+                        <li class="col-md-3">
+                            <div class="seller_red">100</div>
+                            <div class="seller_text">已下架</div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="content_seller_left col-md-6" style="padding: 0px;">
+                <div class="yg9_left">
+                    <div class="content_thing_title">店内菜品总览</div>
+                    <ul class="content_seller_ul col-md-12">
+                        <li class="col-md-3">
+                            <div class="seller_red">{$sql15}</div>
+                            <div class="seller_text">已上架</div>
+                        </li>
+                        <li class="col-md-3">
+                            <div class="seller_red">{$sql16}</div>
+                            <div class="seller_text">已下架</div>
+                        </li>
+                       <!--  <li class="col-md-3">
+                            <div class="seller_red">100</div>
+                            <div class="seller_text">已下架</div>
+                        </li>
+                        <li class="col-md-3">
+                            <div class="seller_red">100</div>
+                            <div class="seller_text">已下架</div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+ </div>
+
+<script type="text/javascript">
+    $(function(){
+        $("#frame-0").addClass("in");
+    })
+</script>

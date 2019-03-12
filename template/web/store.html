@@ -1,0 +1,214 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<style type="text/css">
+    .nav-tabs>li>a:hover{
+        color: #333;
+        border-color: #31C2A5;
+        background-color: white;
+    }
+    .nav-tabs > li.active > a,.nav-tabs > li.active > a:hover{
+        background-color: #31C2A5;
+        color: white;
+        border-color: #31C2A5;
+    }
+    .nav.nav-tabs{border-color: #31C2A5;margin-top: 30px;}
+    .yg5_key>div{float: left;line-height: 34px;}
+    .store_td1{height: 45px;}
+    .store_list_img{width: 60px;height: 60px;}
+    .yg5_tabel{border-color: #e5e5e5;outline: 1px solid #e5e5e5;}
+    .yg5_tr2>td{padding: 15px;border: 1px solid #e5e5e5;text-align: center;}
+    .yg5_tr1>td{
+        border: 1px solid #e5e5e5;
+        padding-left: 15px;
+        background-color: #FAFAFA;
+        font-weight: bold;
+        text-align: center;
+    }
+    .ygcopy1>a>span,.ygcopy>a,.ygcopy>button,.td_type>span{margin-bottom: 10px;}
+    .yg5_btn{background-color: #EEEEEE;color: #333;border: 1px solid #E4E4E4;border-radius: 6px;width: 100px;height: 34px;}
+    .yghover2{position: absolute;bottom: -20px;left: -50%;z-index: 2;color: #333;display: none;}
+    .yghover{position: relative;}
+    .yghover:hover .yghover2{display: block;}
+    /*#frame-0{display: block;visibility: visible;}*/
+</style>
+<ul class="nav nav-tabs">    
+    {if $_W['role']=='operator'}
+        <li class="active"><a href="{php echo $this->createWebUrl('store')}">门店管理</a></li>
+    {else}
+        <li class="active"><a href="{php echo $this->createWebUrl('store')}">门店管理</a></li>
+        <li><a href="{php echo $this->createWebUrl('addstore')}">门店添加</a></li>
+        <!-- <li><a href="{php echo $this->createWebUrl('ygdata')}">日期选择</a></li> -->
+    {/if}
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="invitative">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                门店管理&nbsp;>&nbsp;筛选查询
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    
+                    <form action="" method="POST">
+                        <div class="col-md-3 yg5_key">
+                            <div>输入关键字：</div>
+                            <div class="input-group" style="width: 200px">                                
+                                <input type="text" name="keywords" class="form-control" placeholder="请输入门店名称">
+                            </div>
+                        </div>
+                        <div class="col-md-3 yg5_key">
+                            <div>门店类型：</div>
+                            <select class="input-group" style="width: 200px" name="type">  
+                            <option value="">不限</option>
+                                 {loop $type $row}                              
+                                <option value="{$row['id']}">{$row['type_name']}</option>
+                                   {/loop}
+                            </select>
+                        </div>
+                        <div class="col-md-3 yg5_key">
+                            <div>所属区域：</div>
+                            <select class="input-group" style="width: 200px" name="area">  
+                            <option value="">不限</option>
+                             {loop $area $row2}                                
+                                 <option value="{$row2['id']}">{$row2['area_name']}</option>
+                            {/loop}
+                            </select>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="input-group" style="width: 100px">
+                            <input type="submit" class="btn yg5_btn" name="submit" value="搜索"/>
+                             <input type="hidden" name="token" value="{$_W['token']}"/>
+                        </div><!-- /input-group -->
+                    </form>
+                </div>  
+            </div>
+        </div>
+
+        <!-- 门店列表部分开始 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                门店列表
+            </div>
+            <div class="panel-body" style="padding: 0px 15px;">
+                <div class="row">
+                    <table class="yg5_tabel col-lg-12">
+                        <tr class="yg5_tr1">
+                            <td class="store_td1 col-lg-1">id</td>
+                            
+                            <td class="col-lg-1">门店LOGO</td>
+                            <td class="col-lg-1">门店名称</td>
+                            <td class="col-lg-1">门店类型</td>
+                            
+                            <td class="col-lg-1">所属区域</td>
+                            <td class="col-lg-2">商家支持</td>
+                            <td class="col-lg-2">简介</td>
+                            {if $_W['role']!='operator'}
+                            <td class="col-lg-1">门店状态</td>
+                            {/if}
+                            <td class="col-lg-2">操作</td>
+                        </tr>
+                         {loop $list $row}
+                        <tr class="yg5_tr2">
+                            <td><div>{$row['id']}</div></td>
+                            
+                            <td>
+                                <img class="store_list_img" src="{media $row['md_logo']}" alt=""/>
+                              <!--   <span></span> -->
+                            </td>
+                            <td>{$row['md_name']}</td>
+                            <td>{$row['type_name']}</td>
+                            
+                            <td>
+                                {$row['area_name']}
+                            </td>
+                            <td class="td_type">
+                                {if $row['is_yy']==1}
+                                <span class="btn btn-sm btn-info">预约</span>
+                                {/if}
+                                {if $row['is_wm']==1}
+                                <span class="btn btn-sm btn-warning">外卖</span>
+                                {/if}
+                                {if $row['is_dn']==1}
+                                <span class="btn btn-sm btn-success">店内</span>
+                                {/if}
+                                {if $row['is_sy']==1}
+                                <span class="btn btn-sm btn-danger">收银</span>
+                                {/if}
+                                {if $row['is_pd']==1}
+                                <span class="btn btn-sm btn-primary">优惠券</span>
+                                {/if}
+                            </td>
+                            <td>{$row['md_content']}</td>
+                            {if $_W['role']!='operator'}
+                            <td class="ygcopy1">{if $row['is_open']==1}
+                             <span class="label label-success"> 开启</span><br><br>
+                             <a href="{php echo $this->createWebUrl('store',array('is_open'=>2,'updid'=>$row['id']))}"><span class="btn btn-sm btn-danger">点击关闭</span></a>
+                            {else}
+                            <span class="label label-danger"> 关闭</span><br><br>
+                            <a href="{php echo $this->createWebUrl('store',array('is_open'=>1,'updid'=>$row['id']))}"><span class="btn btn-sm btn-success">点击开启</span></a>
+                            {/if}
+                            </td>
+                            {/if}
+                            <td class="ygcopy">
+                            {if $_W['role']=='operator'}
+                            <a class="btn btn-info btn-sm" href="{php echo $this->createWebUrl('index',array('id'=>$row['id']))}">管理</a>&nbsp;&nbsp;
+                            {else}
+                            <a class="btn btn-info btn-sm" href="{php echo $this->createWebUrl('index',array('id'=>$row['id']))}">管理</a>&nbsp;&nbsp;
+                            <a class="btn btn-warning btn-sm" href="{php echo $this->createWebUrl('addstore', array('id' => $row['id']))}" title="编辑">改</a>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal{$row['id']}">删</button>&nbsp;&nbsp;
+                                <button class="btn btn-success btn-sm yghover" data-toggle="modal" data-target="#myModal2{$row['id']}">复制
+                                <span class="yghover2">点击复制该门店所有内容</span>
+                                </button>
+                                {/if}
+
+                                </td>
+                        </tr>
+                        <div class="modal fade" id="myModal{$row['id']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">提示</h4>
+                                    </div>
+                                    <div class="modal-body" style="font-size: 20px">
+                                        确定删除么？
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <a href="{php echo $this->createWebUrl('store', array('op'=>'delete','id' => $row['id']))}" type="button" class="btn btn-info" >确定</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- —————————————复制的弹框————————————— -->
+                        <div class="modal fade" id="myModal2{$row['id']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">提示</h4>
+                                    </div>
+                                    <div class="modal-body" style="font-size: 20px">
+                                        此功能会消耗大量服务器资源,请谨慎使用,确定复制么？
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <a href="{php echo $this->createWebUrl('store', array('op'=>'copy','id' => $row['id']))}" type="button" class="btn btn-info" >确定</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         {/loop}
+                            
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#frame-0").addClass("in");
+    })
+</script>

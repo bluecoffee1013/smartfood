@@ -1,0 +1,40 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<style type="text/css">
+    /*#frame-4{display: block;visibility: visible;}*/
+</style>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="invitative">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                系统设置&nbsp;>&nbsp;分类显示设置
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启分类显示</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="typeset" value="1" {if $item['typeset']==1 || empty($item['typeset'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="typeset" value="2" {if $item['typeset']==2}checked{/if} />关闭
+                        </label>    
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #31C2A5;" />
+            <input type="hidden" name="token" value="{$_W['token']}" />
+            <input type="hidden" name="id" value="{$item['id']}" />
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#frame-4").addClass("in");
+    })
+</script>

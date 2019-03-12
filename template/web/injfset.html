@@ -1,0 +1,89 @@
+{template 'public/header'}
+{template 'public/comhead'}
+
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="invitative">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                积分设置
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启评价得积分</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_jf" value="1" {if $info['is_jf']==1 || empty($info['is_jf'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_jf" value="2" {if $info['is_jf']==2}checked{/if} />关闭
+                        </label>    
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启外卖消费得积分</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_wmjf" value="1" {if $info['is_wmjf']==1 || empty($info['is_wmjf'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_wmjf" value="2" {if $info['is_wmjf']==2}checked{/if} />关闭
+                        </label>    
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启店内消费得积分</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_dnjf" value="1" {if $info['is_dnjf']==1 || empty($info['is_dnjf'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_dnjf" value="2" {if $info['is_dnjf']==2}checked{/if} />关闭
+                        </label>    
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启预定消费得积分</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_yyjf" value="1" {if $info['is_yyjf']==1 || empty($info['is_yyjf'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_yyjf" value="2" {if $info['is_yyjf']==2}checked{/if} />关闭
+                        </label>    
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启当面付消费得积分</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_dmjf" value="1" {if $info['is_dmjf']==1 || empty($info['is_dmjf'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_dmjf" value="2" {if $info['is_dmjf']==2}checked{/if} />关闭
+                        </label>    
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+        
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #31C2A5;" />
+            <input type="hidden" name="token" value="{$_W['token']}" />
+            <input type="hidden" name="id" value="{$info['id']}" />
+        </div>
+    </form>
+</div>
+

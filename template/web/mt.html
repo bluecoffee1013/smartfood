@@ -1,0 +1,61 @@
+{template 'public/header'}
+{template 'public/comhead'}
+
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="invitative">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                门店媒体
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">音乐链接</label>
+                    <div class="col-sm-10">
+                        <input type="text"  name="store_mp3" value="{$info['store_mp3']}" id="web_name" class="form-control" />
+                         *音乐链接，目前支持的格式有 m4a, aac, mp3, wav
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启音乐</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_mp3" value="1" {if $info['is_mp3']==1 || empty($info['is_mp3'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_mp3" value="2" {if $info['is_mp3']==2}checked{/if} />关闭
+                        </label>    
+                    </div>
+                </div>
+                
+                
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">视频链接</label>
+                    <div class="col-sm-10">
+                        <input type="text"  name="store_video" value="{$info['store_video']}" id="web_name" class="form-control" />
+                         
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启视频</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_video" value="1" {if $info['is_video']==1 || empty($info['is_video'])}checked{/if} />开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_video" value="2" {if $info['is_video']==2}checked{/if} />关闭
+                        </label>    
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #31C2A5;" />
+            <input type="hidden" name="token" value="{$_W['token']}" />
+            <input type="hidden" name="id" value="{$info['id']}" />
+        </div>
+    </form>
+</div>

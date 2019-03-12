@@ -1,0 +1,269 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<style type="text/css">
+    .nav-tabs>li>a:hover{
+        color: #333;
+        border-color: #31C2A5;
+        background-color: white;
+    }
+    .nav-tabs > li.active > a,.nav-tabs > li.active > a:hover{
+        background-color: #31C2A5;
+        color: white;
+        border-color: #31C2A5;
+    }
+    .nav.nav-tabs{border-color: #31C2A5;margin-top: 30px;}
+</style>
+<ul class="nav nav-tabs">    
+    <li><a href="{php echo $this->createWebUrl('store')}">门店管理</a></li>
+    <li class="active"><a href="{php echo $this->createWebUrl('addstore')}">门店添加</a></li>
+    <!-- <li><a href="{php echo $this->createWebUrl('yg4')}">门店回收站</a></li> -->
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <!--<input type="hidden" name="parentid" value="{$parent['id']}" />-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                内容编辑
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>门店名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="md_name" class="form-control" value="{$info['md_name']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>门店logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('md_logo', $info['md_logo'])}
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="margin-right: 15px;"><font color="red">*</font>所属区域</label>
+                    <select class="col-sm-8" name="md_area">
+                        {loop $area $key $item2}
+                        {if $item['id']==$info['md_area']}
+                        <option value="{$item2['id']}" selected="selected">{$item2['area_name']}</option>
+                        {else}
+                        <option value="{$item2['id']}" >{$item2['area_name']}</option>
+                        {/if}
+                        {/loop}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 control-label">商家支持</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                        {if $info['is_yy']==1}  
+                        <input type="checkbox" name="is_yy" id="optionsRadios3" value="1" checked> 预约
+                        {else}
+                        <input type="checkbox" name="is_yy" id="optionsRadios3" value="1" > 预约
+                        {/if}
+                        </label>
+                        <label class="checkbox-inline">
+                            {if $info['is_dn']==1}  
+                            <input type="checkbox" name="is_dn" id="optionsRadios4"  value="1" checked> 点餐
+                              {else}
+                               <input type="checkbox" name="is_dn" id="optionsRadios4"  value="1" > 点餐
+                               {/if}
+                        </label>
+                        <label class="checkbox-inline">
+                           {if $info['is_wm']==1}  
+                            <input type="checkbox" name="is_wm" id="optionsRadios4"  value="1" checked> 外卖
+                             {else}
+                                <input type="checkbox" name="is_wm" id="optionsRadios4"  value="1"> 外卖
+                                 {/if}
+                        </label>
+                        <label class="checkbox-inline">
+                             {if $info['is_pd']==1}  
+                                <input type="checkbox" name="is_pd" id="optionsRadios4"  value="1" checked>优惠券
+                                {else}
+                                <input type="checkbox" name="is_pd" id="optionsRadios4"  value="1" >优惠券
+                                 {/if}
+                        </label>
+                        <label class="checkbox-inline">
+                        {if $info['is_sy']==1}  
+                            <input type="checkbox" name="is_sy" id="optionsRadios4"  value="1" checked> 收银
+                             {else}
+                            <input type="checkbox" name="is_sy" id="optionsRadios4"  value="1" > 收银
+                             {/if}
+                        </label>
+                        <p></p>
+                        *如果只勾选外卖,则点击商家直接进入外卖点餐页面
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">预约前台文本名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="yy_name" class="form-control" value="{$info['yy_name']}" />
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">预约前台图标</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('yy_img', $info['yy_img'])}
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">点餐前台文本名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="dn_name" class="form-control" value="{$info['dn_name']}" />
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">点餐前台图标</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('dn_img', $info['dn_img'])}
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">外卖前台文本名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="wm_name" class="form-control" value="{$info['wm_name']}" />
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">外卖前台图标</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('wm_img', $info['wm_img'])}
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">优惠券前台文本名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="pd_name" class="form-control" value="{$info['pd_name']}" />
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">优惠券前台图标</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('pd_img', $info['pd_img'])}
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">收银前台文本名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="sy_name" class="form-control" value="{$info['sy_name']}" />
+                    </div>
+                </div> <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">收银前台图标</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('sy_img', $info['sy_img'])}
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="margin-right: 15px;"><font color="red">*</font>门店类型</label>
+                    <select class="col-sm-8" name="md_type">
+                        {loop $type $key $item}
+                        {if $item['id']==$info['md_type']}
+                        <option value="{$item['id']}" selected="selected">{$item['type_name']}</option>
+                        {else}
+                        <option value="{$item['id']}" >{$item['type_name']}</option>
+                        {/if}
+                        {/loop}
+                    </select>
+                </div>
+                  <!--  <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">上午营业时间(开始时间)</label>
+                    <div class="col-sm-10">
+                        {php echo tpl_form_field_clock(time,$info['time'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">上午营业时间(结束时间)</label>
+                    <div class="col-sm-10">
+                        {php echo tpl_form_field_clock(time2,$info['time2'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">下午营业时间(开始时间)</label>
+                    <div class="col-sm-10">
+                        {php echo tpl_form_field_clock(time3,$info['time3'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">下午营业时间(结束时间)</label>
+                    <div class="col-sm-10">
+                        {php echo tpl_form_field_clock(time4,$info['time4'])}
+                    </div>
+                </div>
+ -->
+                <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">是否显示门店</label>
+                <div class="col-sm-10">
+                    <select class="col-sm-8" name="is_rest">
+                        {if $info['is_rest']==1}
+                        <option value="1" selected="selected">是</option>
+                        <option value="2">否</option>
+                        {elseif $info['is_rest']==2}
+                        <option value="1">是</option>
+                        <option value="2" selected="selected">否</option>
+                        {else}
+                        <option value="1">是</option>
+                        <option value="2">否</option>
+                        {/if}
+                    </select>
+                </div>
+            </div>
+<div class="form-group">
+                  <label class="col-xs-12 col-sm-3 col-md-2 control-label">商户提现手续费</label>
+                  <div class="col-sm-9">
+                        <p class="input-group">
+                             <input type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" name="poundage" value="{$info['poundage']}" id="points" class="form-control" />
+                             <span class="input-group-addon">%</span>
+                        </p>
+                        <div class="help-block">商户提现时收取对应的手续费,如果不填则收取商户对应分类下的手续费</div>
+                  </div>
+                </div>
+    
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">简介</label>
+        <div class="col-sm-10">
+       <input type="text" name="md_content" class="form-control" value="{$info['md_content']}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+        <div class="col-sm-9">
+            <input type="text" name="number" class="form-control" value="{$info['number']}" />
+        </div>
+    </div>
+
+</div>
+</div>
+
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="提交" class="btn col-lg-3" style="color: white;background-color: #31C2A5;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#frame-0").addClass("in");
+    })
+</script>
+

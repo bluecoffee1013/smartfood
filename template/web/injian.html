@@ -1,0 +1,98 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<style type="text/css">
+.panel-default>.panel-heading{font-weight: bold;}
+    .nav-tabs>li>a:hover{
+        color: #333;
+        border-color: #31C2A5;
+        background-color: white;
+    }
+    .nav-tabs > li.active > a,.nav-tabs > li.active > a:hover{
+        background-color: #31C2A5;
+        color: white;
+        border-color: #31C2A5;
+    }
+    .nav.nav-tabs{border-color: #31C2A5;margin-top: 30px;}
+    .yg5_key>div{float: left;line-height: 34px;}
+    .store_td1{height: 45px;}
+    .store_list_img{width: 60px;height: 60px;}
+    .yg5_tabel{border-color: #e5e5e5;outline: 1px solid #e5e5e5;}
+    .yg5_tr2>td{padding: 10px 15px;border: 1px solid #e5e5e5;}
+    .yg5_tr1>th{
+        border: 1px solid #e5e5e5;
+        padding-left: 15px;
+        background-color: #FAFAFA;
+        font-weight: bold;
+    }
+    .yg5_btn{background-color: #EEEEEE;color: #333;border: 1px solid #E4E4E4;border-radius: 6px;width: 100px;height: 34px;}
+</style>
+<ul class="nav nav-tabs">    
+    <li class="active"><a href="javascript:void(0);">满减活动管理</a></li>
+    <li><a href="{php echo $this->createWebUrl('injianadd')}">添加/编辑满减活动</a></li>
+</ul>
+<div class="main">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-primary" href="javascript:location.reload()"><i class="fa fa-refresh"></i>刷新</a>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            满减活动管理
+        </div>
+        <div class="panel-body" style="padding: 0px 15px;">
+            <div class="row">
+                <table class="yg5_tabel col-md-12">
+                    <tr class="yg5_tr1">
+                        <th class="store_td1 col-md-2">满减名称</th>
+                        <th class="col-md-1">满（元）</th>
+                        <th class="col-md-1">减（元）</th>
+                        <th class="col-md-2">使用范围</th>
+                        <th class="col-md-2">操作</th>
+                    </tr>
+                      {loop $list $row}
+                    <tr class="yg5_tr2">
+                        <td><div class="type-parent">{$row['name']}</div></td>
+                        <td>{$row['full']}</td>
+                        <td><div class="type-parent">{$row['reduction']}</div></td>
+                         {if $row['type']==1}
+                  <td>
+                  <span class="label label-warning"> 仅限外卖使用</span>
+                 
+                  </td>
+                   {elseif $row['type']==2}
+                    <td>
+                    <span class="label label-info"> 仅限店内使用</span>              
+                  </td>
+                  {elseif $row['type']==3}
+                    <td>
+                    <span class="label label-default">两者都可使用</span> 
+                  </td>
+                   {/if}
+                        <td><a class="btn btn-warning btn-sm" href="{php echo $this->createWebUrl('injianadd', array('id' => $row['id']))}" title="编辑">改</a>&nbsp;&nbsp;<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal{$row['id']}">删</button></td>
+                    </tr>  
+                    <div class="modal fade" id="myModal{$row['id']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">提示</h4>
+                        </div>
+                        <div class="modal-body" style="font-size: 20px">
+                            确定删除么？
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <a href="{php echo $this->createWebUrl('injian', array('op' => 'delete', 'id' => $row['id']))}" type="button" class="btn btn-info" >确定</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    {/loop}  
+                                     
+                </table>
+            </div>
+        </form>
+    </div>
+    {$pager}
+</div>

@@ -1,0 +1,121 @@
+{template 'public/header'}{template 'public/comhead'}
+<style type="text/css">
+    .nav-tabs > li > a:hover {
+    color: #333;
+    border-color: #31C2A5;
+    background-color: white;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover {
+    background-color: #31C2A5;
+    color: white;
+    border-color: #31C2A5;
+}
+
+.nav.nav-tabs {
+    border-color: #31C2A5;
+    margin-top: 30px;
+}
+
+.yg5_key > div {
+    float: left;
+    line-height: 34px;
+}
+
+.store_td1 {
+    height: 45px;
+}
+
+.store_list_img {
+    width: 60px;
+    height: 60px;
+}
+
+.yg5_tabel {
+    border-color: #e5e5e5;
+    outline: 1px solid #e5e5e5;
+}
+
+.yg5_tr2 > td {
+    padding: 10px 15px;
+    border: 1px solid #e5e5e5;
+}
+
+.yg5_tr1 > th {
+    border: 1px solid #e5e5e5;
+    padding-left: 15px;
+    background-color: #FAFAFA;
+    font-weight: bold;
+}
+
+.yg5_btn {
+    background-color: #EEEEEE;
+    color: #333;
+    border: 1px solid #E4E4E4;
+    border-radius: 6px;
+    height: 34px;
+}
+</style>
+<ul class="nav nav-tabs">
+    <li><a href="{php echo $this->createWebUrl('account')}">账号管理</a></li>
+    <li class="active"><a href="{php echo $this->createWebUrl('countadd')}">添加/编辑账号</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <div class="panel panel-default">
+            <div class="panel-heading"> 添加/编辑账号</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">登录账号</label>
+                    <div class="col-sm-10 col-lg-9">
+                        <input id="" name="username" type="text" class="form-control" value="{$users['username']}"/>
+                        <span class="help-block">请输入用户名，用户名为 3 到 15 个字符组成，包括汉字，大小写字母（不区分大小写）</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">登录密码</label>
+                    <div class="col-sm-10 col-lg-9">
+                        <input id="password" name="password" type="password" class="form-control" value="" autocomplete="off"/>
+                        <span class="help-block">请填写密码，最小长度为 8 个字符</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">确认密码</label>
+                    <div class="col-sm-10 col-lg-9">
+                        <input id="repassword" type="password" class="form-control" value="" autocomplete="off"/>
+                        <span class="help-block">重复输入密码，确认正确输入</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">所属门店</label>
+                    <div class="col-sm-10 col-lg-9">
+                        <select name="storeid" class="form-control" id="groupid">
+                            {loop $stores $row}
+                            <option value="{$row['id']}" {if $account['storeid']==$row['id'] || $storeid==$row['id']}selected{/if}>{$row['md_name']}</option>
+                            {/loop}
+                        </select>
+                        <span class="help-block">管理门店</span>
+                    </div>
+                </div>
+              
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">状态</label>
+                    <div class="col-sm-9"><label class="radio-inline">
+                        <input type="radio" name="status" value="2" {if $users['status']==2 || empty($users)}checked{/if}>启用 </label> <label class="radio-inline">
+                        <input type="radio" name="status" value="1" {if $users['status']== 1}checked{/if}>关闭 </label>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="保存设置" class="btn yg5_btn col-lg-3" style="color: white;background-color: #31C2A5;"/>
+            <input type="hidden" name="token" value="{$_W['token']}"/>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#frame-0").addClass("in");
+    })
+</script>
